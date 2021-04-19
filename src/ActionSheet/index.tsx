@@ -86,7 +86,11 @@ export default class ActionSheet extends React.Component<Props, State> {
           </React.Fragment>
         )}
         {isVisible && useModal && (
-          <Modal animationType="none" transparent={true} onRequestClose={this._selectCancelButton}>
+          <Modal
+            statusBarTranslucent
+            animationType="none"
+            transparent={true}
+            onRequestClose={this._selectCancelButton}>
             {overlay}
             {this._renderSheet()}
           </Modal>
@@ -185,13 +189,13 @@ export default class ActionSheet extends React.Component<Props, State> {
         toValue: 0.32,
         easing: EASING_OUT,
         duration: OPACITY_ANIMATION_IN_TIME,
-        useNativeDriver: this.props.useNativeDriver,
+        useNativeDriver: this.props.useNativeDriver || false,
       }),
       Animated.timing(sheetOpacity, {
         toValue: 1,
         easing: EASING_OUT,
         duration: OPACITY_ANIMATION_IN_TIME,
-        useNativeDriver: this.props.useNativeDriver,
+        useNativeDriver: this.props.useNativeDriver || false,
       }),
     ]).start(result => {
       if (result.finished) {
@@ -249,13 +253,13 @@ export default class ActionSheet extends React.Component<Props, State> {
         toValue: 0,
         easing: EASING_IN,
         duration: OPACITY_ANIMATION_OUT_TIME,
-        useNativeDriver: this.props.useNativeDriver,
+        useNativeDriver: this.props.useNativeDriver || false,
       }),
       Animated.timing(sheetOpacity, {
         toValue: 0,
         easing: EASING_IN,
         duration: OPACITY_ANIMATION_OUT_TIME,
-        useNativeDriver: this.props.useNativeDriver,
+        useNativeDriver: this.props.useNativeDriver || false,
       }),
     ]).start(result => {
       if (result.finished) {
